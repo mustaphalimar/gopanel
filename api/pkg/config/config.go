@@ -1,6 +1,7 @@
 package config
 
 import (
+	"fmt"
 	"os"
 	"strconv"
 	"time"
@@ -35,7 +36,7 @@ type DatabaseConfig struct {
 	MaxOpenConns    int
 	MaxIdleConns    int
 	ConnMaxLifetime time.Duration
-	URL             string // full connection url (alternative to individual fields)
+	URI             string // full connection url (alternative to individual fields)
 }
 
 type LoggerConfig struct {
@@ -66,7 +67,7 @@ func Load() *Config {
 			MaxOpenConns:    getIntEnv("DB_MAX_OPEN_CONNS", 25),
 			MaxIdleConns:    getIntEnv("DB_MAX_IDLE_CONNS", 25),
 			ConnMaxLifetime: getDurationEnv("DB_CONN_MAX_LIFETIME", 5*time.Minute),
-			URL:             getEnv("DATABASE_URL", "postgresql://postgres:admin@localhost:5432/gopanel?sslmode=disable"),
+			URI:             getEnv("DATABASE_URL", "postgresql://postgres:admin@localhost:5432/gopanel?sslmode=disable"),
 		},
 		Logger: LoggerConfig{
 			Level:  getEnv("LOG_LEVEL", "info"),
@@ -100,4 +101,19 @@ func getDurationEnv(key string, rollback time.Duration) time.Duration {
 		}
 	}
 	return rollback
+}
+
+func (c *DatabaseConfig) GetDatabaseURI() string {
+	if c.URI != "" {
+		return c.URI
+	}
+	return fmt.Sprintf(
+		"postgres://%s:%s@%s:%s/%s?sslmode=%s",
+		c.User,
+		c.Password,
+		c.Host,
+		c.Port,
+		c.DBName,
+		c.SSLMode,
+	)
 }
