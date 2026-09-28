@@ -1,0 +1,93 @@
+# ---- Go ----
+# Compiled binaries / build output
+bin/
+dist/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+# Local build artifacts from `go build` in cmd dirs
+/api/api
+/api/cmd/api/api
+/daemon/daemon
+/daemon/cmd/daemon/daemon
+
+# Test & coverage output
+*.test
+*.out
+coverage.*
+cover.out
+profile.out
+
+# Go workspace (machine-specific)
+go.work
+go.work.sum
+
+# Delve / debug binaries
+__debug_bin*
+
+# ---- Node / web ----
+node_modules/
+.pnp
+.pnp.js
+.npm
+.eslintcache
+*.tsbuildinfo
+
+# Vite / TanStack Start build output
+web/dist/
+web/dist-ssr/
+web/.output/
+web/.nitro/
+web/.tanstack/
+web/.vinxi/
+web/.wrangler/
+__unconfig*
+*.local
+
+# ---- Env & secrets ----
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.crt
+!**/testdata/**/*.pem
+!**/testdata/**/*.key
+
+# ---- Local data / runtime ----
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+data/
+tmp/
+logs/
+*.log
+*.pid
+*.sock
+
+# ---- Editors & OS ----
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+desktop.ini
+.idea/
+*.swp
+*.swo
+*~
+
+# Keep shared VS Code settings, ignore personal overrides
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/tasks.json
+
+# ---- Misc ----
+todos.json
+.claude/settings.local.json
