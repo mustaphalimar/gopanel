@@ -44,7 +44,7 @@ type LoggerConfig struct {
 	Format string //json, text
 }
 
-func Load() *Config {
+func Load() (*Config, error) {
 	_ = godotenv.Load()
 
 	cfg := Config{
@@ -75,7 +75,7 @@ func Load() *Config {
 		},
 	}
 
-	return &cfg
+	return &cfg, nil
 }
 
 func getEnv(key, rollback string) string {

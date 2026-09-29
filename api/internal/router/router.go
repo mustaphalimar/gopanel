@@ -38,6 +38,6 @@ func (r *Router) setupRoutes() {
 	})
 }
 
-func (r *Router) ServerHTTP(w http.ResponseWriter, req *http.Request) {
+func (r *Router) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	r.router.ServeHTTP(w, req)
 }

@@ -14,7 +14,7 @@ type Logger struct {
 	*slog.Logger
 }
 
-func NewLogger(cfg *config.LoggerConfig) *Logger {
+func New(cfg *config.LoggerConfig) *Logger {
 	var handler slog.Handler
 	var level slog.Level
 

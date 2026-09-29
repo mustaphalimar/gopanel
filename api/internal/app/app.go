@@ -81,3 +81,9 @@ func (a *App) RunAPI() error {
 	}
 	return nil
 }
+
+func (a *App) Close() {
+	if a.DB != nil {
+		a.DB.Close()
+	}
+}
